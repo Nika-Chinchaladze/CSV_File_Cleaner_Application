@@ -1,5 +1,5 @@
 # CSV_File_Cleaner_Application
-# PyQt5 Application that uses pandas library and cleans dirty data of CSV file
+
 # Application Design:
 
 ![first_two](https://user-images.githubusercontent.com/106172218/181299806-e5766c50-0bbb-41f0-8237-98d0083644c9.jpg)
