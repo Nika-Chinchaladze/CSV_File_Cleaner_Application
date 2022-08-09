@@ -2,6 +2,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 from EmptyRows import Ui_EmptyRows_Page
 from WrongData import Ui_WrongData_page
 from WrongFormat import Ui_WrongFormat_page
+from Describe import Ui_File_watcher
 import pandas as pd
 
 
@@ -24,6 +25,12 @@ class Ui_Options_Page(object):
         self.we = Ui_WrongFormat_page()
         self.we.setupUi(self.window5)
         self.window5.show()
+    
+    def File_Watcher_page(self):
+        self.window6 = QtWidgets.QMainWindow()
+        self.tommas = Ui_File_watcher()
+        self.tommas.setupUi(self.window6)
+        self.window6.show()
 
     def setupUi(self, Options_Page):
         Options_Page.setObjectName("Options_Page")
@@ -42,7 +49,7 @@ class Ui_Options_Page(object):
         self.clean_label.setObjectName("clean_label")
         
         self.empty_button = QtWidgets.QPushButton(self.centralwidget)
-        self.empty_button.setGeometry(QtCore.QRect(10, 465, 131, 81))
+        self.empty_button.setGeometry(QtCore.QRect(10, 445, 131, 56))
         font = QtGui.QFont()
         font.setPointSize(10)
         self.empty_button.setFont(font)
@@ -51,14 +58,14 @@ class Ui_Options_Page(object):
 
 # --------------------------------------- SECRET LABEL --------------------------------------- #
         self.secret_label = QtWidgets.QLabel(self.centralwidget)
-        self.secret_label.setGeometry(QtCore.QRect(20, 434, 100, 20))
+        self.secret_label.setGeometry(QtCore.QRect(200, 56, 300, 15))
         self.secret_label.setStyleSheet("color: rgb(240, 240, 240);")
         self.secret_label.setObjectName("secret_label")
 
 # -------------------------------------------------------------------------------------------- #
         
         self.wrong_format_button = QtWidgets.QPushButton(self.centralwidget)
-        self.wrong_format_button.setGeometry(QtCore.QRect(160, 465, 131, 81))
+        self.wrong_format_button.setGeometry(QtCore.QRect(160, 445, 131, 56))
         font = QtGui.QFont()
         font.setPointSize(10)
         self.wrong_format_button.setFont(font)
@@ -66,7 +73,7 @@ class Ui_Options_Page(object):
         self.wrong_format_button.setObjectName("wrong_format_button")
         
         self.wrong_data_button = QtWidgets.QPushButton(self.centralwidget)
-        self.wrong_data_button.setGeometry(QtCore.QRect(310, 465, 131, 81))
+        self.wrong_data_button.setGeometry(QtCore.QRect(310, 445, 131, 56))
         font = QtGui.QFont()
         font.setPointSize(10)
         self.wrong_data_button.setFont(font)
@@ -74,15 +81,23 @@ class Ui_Options_Page(object):
         self.wrong_data_button.setObjectName("wrong_data_button")
         
         self.dublicate_button = QtWidgets.QPushButton(self.centralwidget)
-        self.dublicate_button.setGeometry(QtCore.QRect(460, 465, 131, 81))
+        self.dublicate_button.setGeometry(QtCore.QRect(460, 445, 131, 56))
         font = QtGui.QFont()
         font.setPointSize(10)
         self.dublicate_button.setFont(font)
         self.dublicate_button.setStyleSheet("background-color: rgb(249, 249, 187);")
         self.dublicate_button.setObjectName("dublicate_button")
+
+        self.open_button = QtWidgets.QPushButton(self.centralwidget)
+        self.open_button.setGeometry(QtCore.QRect(65, 510, 470, 41))
+        font = QtGui.QFont()
+        font.setPointSize(11)
+        self.open_button.setFont(font)
+        self.open_button.setStyleSheet("background-color: rgb(0, 186, 136);")
+        self.open_button.setObjectName("open_button")
         
         self.exit_button = QtWidgets.QPushButton(self.centralwidget)
-        self.exit_button.setGeometry(QtCore.QRect(10, 560, 581, 51))
+        self.exit_button.setGeometry(QtCore.QRect(141, 560, 319, 41))
         font = QtGui.QFont()
         font.setPointSize(11)
         self.exit_button.setFont(font)
@@ -137,6 +152,10 @@ class Ui_Options_Page(object):
 
         self.dublicate_button.clicked.connect(self.Remove_Dublicate_Rows)
 
+        self.open_button.clicked.connect(self.File_Watcher_page)
+        self.open_button.clicked.connect(self.Write_On_Describe)
+        self.open_button.clicked.connect(Options_Page.close)
+
         self.exit_button.clicked.connect(Options_Page.close)
 
     
@@ -152,6 +171,10 @@ class Ui_Options_Page(object):
     def Write_On_WrongData(self):
         newname = self.secret_label.text()
         self.you.data_secret_label.setText(f'{newname}')
+    
+    def Write_On_Describe(self):
+        newname = self.secret_label.text()
+        self.tommas.silent_label.setText(f'{newname}')
     
     # define method for remove dublicate button:
     def Remove_Dublicate_Rows(self):
@@ -182,6 +205,7 @@ class Ui_Options_Page(object):
         self.wrong_data_button.setText(_translate("Options_Page", "Clean Wrong Data"))
         self.dublicate_button.setText(_translate("Options_Page", "Remove Dublicates"))
         self.exit_button.setText(_translate("Options_Page", "Save Changes and Exit!"))
+        self.open_button.setText(_translate("Options_Page", "Open CSV File"))
         self.secret_label.setText(_translate("Options_Page", ""))
         self.done_label.setText(_translate("Options_Page", ""))
 
