@@ -60,7 +60,7 @@ class Ui_Reference_Page(object):
         self.ability_label.setObjectName("ability_label")
         
         self.boom_label = QtWidgets.QLabel(self.centralwidget)
-        self.boom_label.setGeometry(QtCore.QRect(10, 70, 800, 351))
+        self.boom_label.setGeometry(QtCore.QRect(10, 70, 800, 363))
         font = QtGui.QFont()
         font.setPointSize(10)
         self.boom_label.setFont(font)
@@ -84,10 +84,11 @@ class Ui_Reference_Page(object):
         \n4) In Clean Wrong Data section User can:
         a) Remove rows, that contain WRONG - Dirty data, from the CSV file
         b) Replace WRONG Values with another - New values in each column
-        \n5) In Remove Dublicates section - User can remove Duplicate Rows permanently""")
+        \n5) In Remove Dublicates section - User can remove Duplicate Rows permanently
+        \n6) User can open CSV file and see changes made by him/her""")
         
         self.check_exist_label = QtWidgets.QLabel(self.centralwidget)
-        self.check_exist_label.setGeometry(QtCore.QRect(10, 430, 800, 50))
+        self.check_exist_label.setGeometry(QtCore.QRect(10, 443, 800, 50))
         font = QtGui.QFont()
         font.setPointSize(11)
         self.check_exist_label.setFont(font)
@@ -99,14 +100,14 @@ class Ui_Reference_Page(object):
         
 # ----------------------------------------- secret labels ----------------------------------------- #
         self.Real_File_Name_label = QtWidgets.QLabel(self.centralwidget)
-        self.Real_File_Name_label.setGeometry(QtCore.QRect(10, 488, 381, 25))
+        self.Real_File_Name_label.setGeometry(QtCore.QRect(10, 492, 381, 20))
         self.Real_File_Name_label.setText("")
         self.Real_File_Name_label.setStyleSheet("color: rgb(240, 240, 240);")
         self.Real_File_Name_label.setWordWrap(True)
         self.Real_File_Name_label.setObjectName("Real_File_Name_label")
         
         self.New_File_Name_label = QtWidgets.QLabel(self.centralwidget)
-        self.New_File_Name_label.setGeometry(QtCore.QRect(490, 488, 381, 25))
+        self.New_File_Name_label.setGeometry(QtCore.QRect(490, 492, 381, 20))
         self.New_File_Name_label.setText("")
         self.New_File_Name_label.setStyleSheet("color: rgb(240, 240, 240);")
         self.New_File_Name_label.setWordWrap(True)
@@ -163,6 +164,8 @@ class Ui_Reference_Page(object):
         self.check_exist_label.setText(_translate("Reference_Page", ""))
         self.back_page_button.setText(_translate("Reference_Page", "Previous Page"))
         self.last_check_button.setText(_translate("Reference_Page", "Check File Existense"))
+        self.Real_File_Name_label.setText(_translate("Reference_Page", ""))
+        self.New_File_Name_label.setText(_translate("Reference_Page", ""))
 
 
 if __name__ == "__main__":
