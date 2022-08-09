@@ -330,14 +330,18 @@ class Ui_WrongData_page(object):
                     self.command_label.setText("Entered Column Name is not CORRECT, check 'Show Columns' button!")
                     self.command_label.setStyleSheet("background-color: rgb(255, 80, 83);")
             except ValueError:
-                if df[column_name].dtype == 'O' and comparison_sign == '==':
-                    for i in df.index:
-                        if df.loc[i, column_name] == remove_str:
-                            df.drop(i, inplace=True)
-                    self.command_label.setText(f"Values Equal To {remove_str} Have Been Deleted Permanently!")
-                    self.command_label.setStyleSheet("background-color: rgb(170, 255, 127);")
-                else:
-                    self.command_label.setText("Control Value is not Numeric, 'It can not be converted into float or int' - So it is useless for Comparison Purposes! Write Only Numbers Here!")
+                try:
+                    if df[column_name].dtype == 'O' and comparison_sign == '==':
+                        for i in df.index:
+                            if df.loc[i, column_name] == remove_str:
+                                df.drop(i, inplace=True)
+                        self.command_label.setText(f"Values Equal To {remove_str} Have Been Deleted Permanently!")
+                        self.command_label.setStyleSheet("background-color: rgb(170, 255, 127);")
+                    else:
+                        self.command_label.setText("Control Value is not Numeric, 'It can not be converted into float or int' - So it is useless for Comparison Purposes! Write Only Numbers Here!")
+                        self.command_label.setStyleSheet("background-color: rgb(255, 80, 83);")
+                except KeyError:
+                    self.command_label.setText("Column Name is not CORRECT, Change it!")
                     self.command_label.setStyleSheet("background-color: rgb(255, 80, 83);")
         
         elif len(control_value) == 0 and len(column_name) > 0:
@@ -403,15 +407,20 @@ class Ui_WrongData_page(object):
                 elif column_name not in list(df.columns):
                     self.command_label.setText("Entered Column Name is not CORRECT, check 'Show Columns' button!")
                     self.command_label.setStyleSheet("background-color: rgb(255, 80, 83);")
+
             except ValueError:
-                if df[column_name].dtype == 'O' and comparison_sign == '==':
-                    for i in df.index:
-                        if df.loc[i, column_name] == replace_str:
-                            df.loc[i, column_name] = new_str
-                    self.command_label.setText(f"Values Equal To {replace_str} Have Been Replaced with {new_str}!")
-                    self.command_label.setStyleSheet("background-color: rgb(170, 255, 127);")
-                else:
-                    self.command_label.setText("Control Value or New Value is not Numeric, 'They can not be converted into float or int' - So they are useless for Comparison Purposes! Write Only Numbers Here!")
+                try:
+                    if df[column_name].dtype == 'O' and comparison_sign == '==':
+                        for i in df.index:
+                            if df.loc[i, column_name] == replace_str:
+                                df.loc[i, column_name] = new_str
+                        self.command_label.setText(f"Values Equal To {replace_str} Have Been Replaced with {new_str}!")
+                        self.command_label.setStyleSheet("background-color: rgb(170, 255, 127);")
+                    else:
+                        self.command_label.setText("Control Value or New Value is not Numeric, 'They can not be converted into float or int' - So they are useless for Comparison Purposes! Write Only Numbers Here!")
+                        self.command_label.setStyleSheet("background-color: rgb(255, 80, 83);")
+                except KeyError:
+                    self.command_label.setText("Column Name is not CORRECT, Change it!")
                     self.command_label.setStyleSheet("background-color: rgb(255, 80, 83);")
         
         elif len(control_value) == 0 and len(new_value) > 0 and len(column_name) > 0:
